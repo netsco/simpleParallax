@@ -6,37 +6,46 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>simpleParallax</title>
         <style>
-            .container {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 900px;
-                margin: 600px auto;
-                /* max-height: 400px;
-                overflow: auto; */
-            }
+                     .container {
+                         display: flex;
+                         align-items: center;
+                         flex-wrap: wrap;
+                         max-width: 900px;
+                         margin: 600px auto;
+                         /* max-height: 400px;
+                         overflow: auto; */
+            	background: #000;
+                     }
 
-            .container > div {
-                flex: 33%;
-            }
-
-            img {
-                max-width: 100%;
-                height: auto;
-            }
+                     .container > div
+                         flex: 33%;
+            	position: relative;
+                     }
 
             .simpleParallax {
-                /* margin: 0 0 48px; */
+            	position: absolute;
             }
+
+                     img {
+                         max-width: 100%;
+                         height: auto;
+                     }
+
+            .up {
+            	opacity: 0;
+            }
+
+                     .simpleParallax {
+                         /* margin: 0 0 48px; */
+                     }
         </style>
     </head>
     <body>
         <section class="container">
             <div>
-                <picture>
-                    <source media="(min-width: 650px)" srcset="https://simpleparallax.com/images/image03.jpg" />
-                    <img class="up" src="https://simpleparallax.com/images/image03.jpg" alt="simpleParallax image" />
-                </picture>
+                <figure data-js-parallax style="position:absolute;">
+                    <figcaption>test</figcaption>
+                </figure>
             </div>
             <div>
                 <img class="up" src="https://simpleparallax.com/images/image03.jpg" alt="simpleParallax image" />
@@ -71,7 +80,7 @@
             <div>
                 <picture>
                     <source media="(min-width: 650px)" srcset="https://simpleparallax.com/images/image03.jpg" />
-                    <img class="up" src="https://simpleparallax.com/images/image03.jpg" alt="simpleParallax image" />
+                    <img src="https://simpleparallax.com/images/image03.jpg" data-js-parallax alt="simpleParallax image" />
                 </picture>
             </div>
             <div>

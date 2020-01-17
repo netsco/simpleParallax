@@ -29,7 +29,7 @@ export default class SimpleParallax {
         if (!('IntersectionObserver' in window)) intersectionObserverAvailable = false;
 
         if (this.settings.customContainer) {
-            console.log(convertToArray(this.settings.customContainer)[0])
+            console.log(convertToArray(this.settings.customContainer)[0]);
             this.customContainer = convertToArray(this.settings.customContainer)[0];
         }
 
@@ -49,7 +49,6 @@ export default class SimpleParallax {
             const instance = new ParallaxInstance(this.elements[i], this.settings);
             instances.push(instance);
         }
-
         // update the instance length
         instancesLength = instances.length;
 

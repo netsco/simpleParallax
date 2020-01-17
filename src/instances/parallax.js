@@ -6,6 +6,7 @@ class ParallaxInstance {
     constructor(element, options) {
         // set the element & settings
         this.element = element;
+        this.img = false;
         this.elementContainer = element;
         this.settings = options;
         this.isVisible = true;
@@ -14,17 +15,36 @@ class ParallaxInstance {
 
         this.init = this.init.bind(this);
 
-        // check if images has not been loaded yet
-        if (isImageLoaded(element)) {
-            this.init();
-        } else {
-            this.element.addEventListener('load', this.init);
+        // add figure support
+        const tag = this.element.tagName;
+        switch (tag) {
+			case 'FIGURE':
+				// get image in figure
+				this.img = this.img || this.element.getElementsByTagName('IMG')[0] || false;
+				if (this.img) {
+					// check if images has not been loaded yet
+					if (isImageLoaded(this.img)) {
+						this.init();
+					} else {
+						this.img.addEventListener('load', this.init);
+					}
+				}
+				break;
+			case 'PICTURE':
+			case 'IMG':
+				// check if images has not been loaded yet
+				if (isImageLoaded(element)) {
+					this.init();
+				} else {
+					this.element.addEventListener('load', this.init);
+				}
+				break;
         }
     }
 
     init() {
         // for some reason, <picture> are init an infinite time on windows OS
-        if (this.isInit) return;
+		if (this.isInit) return;
 
         // check if element has not been already initialized with simpleParallax
         if (this.element.closest('.simpleParallax')) return;

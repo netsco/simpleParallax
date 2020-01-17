@@ -1,6 +1,6 @@
 /*!
  * simpleParallax - simpleParallax is a simple JavaScript library that gives your website parallax animations on any images, 
- * @date: 07-12-2019 18:53:52, 
+ * @date: 17-01-2020 9:51:20, 
  * @version: 5.2.0,
  * @link: https://simpleparallax.com/
  */
@@ -232,17 +232,42 @@ function () {
 
     // set the element & settings
     this.element = element;
+    this.img = false;
     this.elementContainer = element;
     this.settings = options;
     this.isVisible = true;
     this.isInit = false;
     this.oldTranslateValue = -1;
-    this.init = this.init.bind(this); // check if images has not been loaded yet
+    this.init = this.init.bind(this); // add figure support
 
-    if (helpers_isImageLoaded(element)) {
-      this.init();
-    } else {
-      this.element.addEventListener('load', this.init);
+    var tag = this.element.tagName;
+
+    switch (tag) {
+      case 'FIGURE':
+        // get image in figure
+        this.img = this.img || this.element.getElementsByTagName('IMG')[0] || false;
+
+        if (this.img) {
+          // check if images has not been loaded yet
+          if (helpers_isImageLoaded(this.img)) {
+            this.init();
+          } else {
+            this.img.addEventListener('load', this.init);
+          }
+        }
+
+        break;
+
+      case 'PICTURE':
+      case 'IMG':
+        // check if images has not been loaded yet
+        if (helpers_isImageLoaded(element)) {
+          this.init();
+        } else {
+          this.element.addEventListener('load', this.init);
+        }
+
+        break;
     }
   }
 

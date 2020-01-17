@@ -5,13 +5,16 @@ import SimpleParallax from '../src/simpleParallax';
 
 let instanceUp;
 const optionUp = {
-    orientation: 'left',
-    // customContainer: document.querySelector('.container')
+    overflow: true,
+	delay: .6,
+	transition: 'cubic-bezier(0,0,0,1)'
+    //customContainer: document.querySelector('.container')
 };
 const imageUp = document.getElementsByTagName('img');
 
-const images = document.querySelectorAll('img');
+const images = document.querySelectorAll('[data-js-parallax]');
 images.forEach((image) => {
+	console.log(image);
     new SimpleParallax(image, optionUp);
 });
 
